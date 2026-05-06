@@ -1,66 +1,203 @@
-<p align="center">
-<img src="https://i.imgur.com/Clzj7Xs.png" alt="osTicket logo"/>
-</p>
+# 🔐 Active Directory to Okta Integration Lab
 
-<h1>IAM Homelabs</h1>
-osTicket is a popular open-source ticketing system designed for IT help desks and customer support teams. It enables organizations to efficiently manage, track, and resolve user issues. Gaining experience in installing and configuring osTicket is beneficial for IT Help Desk Administrators, as it showcases hands-on expertise in ticketing systems.
+## 📌 Project Overview
 
-Prerequisites
+This project demonstrates how to integrate an on-premises Active Directory (AD) environment with Okta using the Okta AD Agent.
 
-Before installing osTicket, ensure you have the following:
+The goal of this lab is to simulate a real-world enterprise identity environment where users and groups are managed in Active Directory and synchronized to Okta for centralized identity and access management.
 
-A Windows machine (or Linux/Mac with similar configurations)
+This project showcases skills in:
+- Identity Lifecycle Management
+- Directory Integration (AD → Okta)
+- User and Group Provisioning
+- SSO Readiness Architecture
 
-XAMPP (which includes Apache, MySQL, and PHP)
+---
 
-The latest version of osTicket
+## 🏗️ Architecture Diagram
 
-A web browser
+![Architecture](images/01-architecture-diagram.png)
 
-<h2>Video Demonstration</h2>
+### 🔍 Architecture Explanation
 
-- ### [YouTube: How To Install osTicket with Prerequisites](https://www.youtube.com)
+- Active Directory is the source of truth for user identities
+- Okta acts as the Identity Provider (IdP)
+- Okta AD Agent securely connects AD to Okta
+- Users and groups are synchronized from AD into Okta
+- Authentication can be delegated to AD
 
-<h2>Environments and Technologies Used</h2>
+---
 
-- Microsoft Azure (Virtual Machines/Compute)
-- Remote Desktop
-- Internet Information Services (IIS)
+## 🛠️ Technologies Used
 
-<h2>Operating Systems Used </h2>
+- Windows Server (Active Directory Domain Services)
+- Okta Developer Tenant
+- Okta Active Directory Agent
+- PowerShell (optional for automation)
+- VirtualBox / VMware (for lab environment)
 
-- Windows 10</b> (21H2)
+---
 
-<h2>List of Prerequisites</h2>
+## ⚙️ Lab Setup Steps
 
-- Item 1
-- Item 2
-- Item 3
-- Item 4
-- Item 5
+### 1️⃣ Active Directory Setup
 
-<h2>Installation Steps</h2>
+- Installed Active Directory Domain Services (AD DS)
+- Promoted server to Domain Controller
+- Created domain: `iamlab.local`
 
-<p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-</p>
-<p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-</p>
-<br />
+📸 Screenshot:
+![AD Users](images/02-ad-users-created.png)
 
-<p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-</p>
-<p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-</p>
-<br />
+---
 
-<p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-</p>
-<p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-</p>
-<br />
+### 2️⃣ Created Users in Active Directory
+
+- Created multiple test users:
+  - John Doe
+  - Jane Smith
+  - IAM Admin User
+
+📸 Screenshot:
+![AD Users](images/02-ad-users-created.png)
+
+---
+
+### 3️⃣ Created AD Security Groups
+
+- Created groups:
+  - IT_Admins
+  - HR_Team
+  - Finance_Team
+
+📸 Screenshot:
+![AD Groups](images/03-ad-groups-created.png)
+
+---
+
+### 4️⃣ Installed Okta AD Agent
+
+- Downloaded Okta AD Agent
+- Installed on domain-joined server
+- Authenticated agent with Okta tenant
+- Linked AD domain to Okta
+
+📸 Screenshot:
+![AD Agent](images/04-okta-ad-agent-installed.png)
+
+---
+
+### 5️⃣ Configured Directory Integration in Okta
+
+- Navigated to:
+  - Directory → Directory Integrations
+- Verified AD connection status
+- Enabled provisioning and import settings
+
+📸 Screenshot:
+![Directory Integration](images/05-okta-directory-integration.png)
+
+---
+
+### 6️⃣ Imported Users from AD to Okta
+
+- Ran import from AD
+- Verified users appear in Okta directory
+
+📸 Screenshot:
+![Users Imported](images/06-users-imported-okta.png)
+
+---
+
+### 7️⃣ Imported Groups from AD to Okta
+
+- Synced AD groups into Okta
+- Verified group memberships
+
+📸 Screenshot:
+![Groups Imported](images/07-groups-imported-okta.png)
+
+---
+
+### 8️⃣ Configured Import & Matching Rules
+
+- Set username format (e.g., email)
+- Enabled automatic confirmation
+- Configured attribute mappings
+
+📸 Screenshot:
+![Import Settings](images/08-import-settings.png)
+
+---
+
+### 9️⃣ Assigned Users to Applications
+
+- Assigned users/groups to applications in Okta
+- Demonstrated role-based access
+
+📸 Screenshot:
+![User Assignment](images/09-user-assignment.png)
+
+---
+
+### 🔟 Tested Authentication Flow
+
+- Verified login via Okta
+- Confirmed AD credentials work (Delegated Authentication)
+
+📸 Screenshot:
+![Login Test](images/10-login-test.png)
+
+---
+
+## 🔐 Key IAM Concepts Demonstrated
+
+- Identity Source of Truth (Active Directory)
+- Identity Federation (Okta as IdP)
+- Just-In-Time Provisioning (Optional)
+- Role-Based Access Control (RBAC)
+- Directory Synchronization
+- Delegated Authentication
+
+---
+
+## 🚀 Key Outcomes
+
+- Successfully integrated AD with Okta
+- Synced users and groups from AD to Okta
+- Demonstrated centralized identity management
+- Validated authentication and access workflows
+
+---
+
+## 📈 Resume Bullet Points (ATS Optimized)
+
+- Integrated on-premises Active Directory with Okta using Okta AD Agent, enabling centralized identity management
+- Configured user and group synchronization from AD to Okta, supporting lifecycle management and RBAC
+- Implemented directory integration and provisioning workflows in Okta, improving access control efficiency
+- Performed user import, attribute mapping, and authentication testing in a hybrid identity environment
+- Simulated enterprise IAM architecture with AD as source of truth and Okta as Identity Provider (IdP)
+
+---
+
+## 🧠 What I Learned
+
+- How enterprise IAM systems integrate with legacy directories
+- How Okta handles directory synchronization and authentication
+- Real-world troubleshooting for identity sync issues
+- Importance of identity lifecycle and governance
+
+---
+
+## 🔄 Future Improvements
+
+- Add SAML-based application integration
+- Implement MFA policies in Okta
+- Automate user provisioning with PowerShell
+- Add lifecycle workflows (joiner/mover/leaver)
+
+---
+
+## 📬 Contact
+
+Feel free to connect with me on LinkedIn or reach out for collaboration!
