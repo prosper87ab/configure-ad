@@ -16,7 +16,7 @@ This project showcases skills in:
 
 ## 🏗️ Architecture Diagram
 
-![Architecture](images/01-architecture-diagram.png)
+![image alt](https://github.com/prosper87ab/prosper87ab/blob/main/ADtoOktaDiagram.png))
 
 ### 🔍 Architecture Explanation
 
